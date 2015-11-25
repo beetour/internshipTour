@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internshipTour.bean.mapper.OcenterTravelRouteListMapper" >
+  <resultMap id="OcenterTravelRouteResultMap" type="com.internshipTour.bean.OcenterTravelRouteList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="road_id" property="roadId" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="flush_time" property="flushTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, uid, road_id, sort, add_time, status, content, flush_time
+  </sql>
+  <select id="selectByExample" resultMap="OcenterTravelRouteResultMap" parameterType="com.internshipTour.bean.OcenterTravelRouteListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ocenter_travel_route_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="OcenterTravelRouteResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ocenter_travel_route_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ocenter_travel_route_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.internshipTour.bean.OcenterTravelRouteListExample" >
+    delete from ocenter_travel_route_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.internshipTour.bean.OcenterTravelRouteList" >
+    insert into ocenter_travel_route_list (id, uid, road_id, 
+      sort, add_time, status, 
+      content, flush_time)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{roadId,jdbcType=INTEGER}, 
+      #{sort,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{flushTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterTravelRouteList" >
+    insert into ocenter_travel_route_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="roadId != null" >
+        road_id,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="flushTime != null" >
+        flush_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="roadId != null" >
+        #{roadId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="flushTime != null" >
+        #{flushTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.internshipTour.bean.OcenterTravelRouteListExample" resultType="java.lang.Integer" >
+    select count(*) from ocenter_travel_route_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ocenter_travel_route_list
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.roadId != null" >
+        road_id = #{record.roadId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flushTime != null" >
+        flush_time = #{record.flushTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ocenter_travel_route_list
+    set id = #{record.id,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      road_id = #{record.roadId,jdbcType=INTEGER},
+      sort = #{record.sort,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      flush_time = #{record.flushTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.internshipTour.bean.OcenterTravelRouteList" >
+    update ocenter_travel_route_list
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="roadId != null" >
+        road_id = #{roadId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="flushTime != null" >
+        flush_time = #{flushTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.internshipTour.bean.OcenterTravelRouteList" >
+    update ocenter_travel_route_list
+    set uid = #{uid,jdbcType=INTEGER},
+      road_id = #{roadId,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      flush_time = #{flushTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <resultMap id="OcenterTravelRouteListAndOcenterTravelRouteResultMap" type="com.internshipTour.bean.OcenterTravelRouteList" >
+    <id column="otrl_id" property="id" jdbcType="INTEGER" />
+    <result column="otrl_uid" property="uid" jdbcType="INTEGER" />
+    <result column="otrl_road_id" property="roadId" jdbcType="INTEGER" />
+    <result column="otrl_sort" property="sort" jdbcType="INTEGER" />
+    <result column="otrl_add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="otrl_status" property="status" jdbcType="INTEGER" />
+    <result column="otrl_content" property="content" jdbcType="VARCHAR" />
+    <result column="otrl_flush_time" property="flushTime" jdbcType="INTEGER" />
+    <association  property="ocenterTravelRoute" javaType="com.internshipTour.bean.OcenterTravelRoute">
+    	<id column="otr_id" property="id" jdbcType="INTEGER" />
+	    <result column="otr_start" property="start" jdbcType="VARCHAR" />
+	    <result column="otr_end" property="end" jdbcType="VARCHAR" />
+	    <result column="otr_road_name" property="roadName" jdbcType="VARCHAR" />
+	    <result column="otr_add_time" property="addTime" jdbcType="INTEGER" />
+	    <result column="otr_flush_time" property="flushTime" jdbcType="INTEGER" />
+	    <result column="otr_status" property="status" jdbcType="INTEGER" />
+	    <result column="otr_content" property="content" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <select id="getAll" parameterType="java.lang.Integer" resultMap="OcenterTravelRouteListAndOcenterTravelRouteResultMap">
+  	select 
+     otrl.id as otrl_id, otrl.uid as otrl_uid, otrl.road_id as otrl_road_id, otrl.sort as otrl_sort, otrl.add_time as otrl_add_time, otrl.status as otrl_status, otrl.content as otrl_content, otrl.flush_time as otrl_flush_time,
+     otr.id as otr_id, otr.start as otr_start, otr.end otr_end, otr.road_name as otr_road_name, otr.add_time as otr_add_time, otr.flush_time as otr_flush_time, otr.status as otr_status, otr.content as otr_content
+    from ocenter_travel_route_list otrl,ocenter_travel_route otr
+    
+    where uid = #{0} and otrl.road_id = otr.id and otr.status = 1 order by otrl.sort,otrl.add_time desc
+  </select>
+</mapper>
