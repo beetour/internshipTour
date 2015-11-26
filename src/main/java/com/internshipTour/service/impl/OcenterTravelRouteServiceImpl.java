@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.internshipTour.base.BaseServiceImpl;
 import com.internshipTour.bean.OcenterTravelRoute;
-import com.internshipTour.bean.OcenterUcenterMember;
 import com.internshipTour.bean.mapper.OcenterTravelRouteMapper;
 import com.internshipTour.service.OcenterTravelRouteService;
 
@@ -16,6 +15,7 @@ import com.internshipTour.service.OcenterTravelRouteService;
 @Transactional
 public class OcenterTravelRouteServiceImpl extends BaseServiceImpl<OcenterTravelRoute> implements OcenterTravelRouteService {
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private OcenterTravelRouteMapper ocenterTravelRouteMapper;
 

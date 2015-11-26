@@ -17,6 +17,7 @@ import com.internshipTour.bean.mapper.OcenterNewsMapper;
 import com.internshipTour.bean.mapper.OcenterPictureMapper;
 import com.internshipTour.service.OcenterNewsDetailService;
 import com.internshipTour.util.common.DateUtil;
+import com.internshipTour.util.common.ImgUtil;
 import com.internshipTour.util.common.SystemConf;
 
 
@@ -32,6 +33,8 @@ public class OcenterNewsDetailServiceImpl extends BaseServiceImpl<OcenterNewsDet
 	
 	@Autowired
 	private OcenterPictureMapper ocenterPictureMapper;
+	
+	private static final String NEWSIMGURL = "../image/default.jpg";
 
 	public Map<String, Object> getByNewsId(OcenterNewsDetail ocenterNewsDetail) {
 		 OcenterNewsDetail newsDetail = ocenterNewsDetailMapper.selectByPrimaryKey(ocenterNewsDetail.getNewsId());
@@ -41,10 +44,15 @@ public class OcenterNewsDetailServiceImpl extends BaseServiceImpl<OcenterNewsDet
 			 OcenterPicture ocenterPicture = ocenterPictureMapper.selectByPrimaryKey(record.getCover());
 			map.put("newsDetail", newsDetail);
 			map.put("ocenterNews", record);
-			String path = SystemConf.getServerIP() +ocenterPicture.getPath();
+			String path = "";
+			if(ocenterPicture != null){				
+				path = SystemConf.getServerIP() + ImgUtil.getPicturePath(ocenterPicture.getPath(), "_200_146");
+			} else {
+				path = NEWSIMGURL ;
+			}
 			map.put("path",  path);
-			 record.setView(record.getView() + 1);
-			 record.setUpdateTime(DateUtil.getIntTime());
+			record.setView(record.getView() + 1);
+			record.setUpdateTime(DateUtil.getIntTime());
 			ocenterNewsMapper.updateByPrimaryKey(record);			
 		 }
 		 return map;

@@ -27,7 +27,8 @@ public class MD5 {
     }
 
     // 返回形式只为数字
-    private static String byteToNum(byte bByte) {
+    @SuppressWarnings("unused")
+	private static String byteToNum(byte bByte) {
         int iRet = bByte;
         System.out.println("iRet1=" + iRet);
         if (iRet < 0) {
@@ -58,8 +59,5 @@ public class MD5 {
         return resultString;
     }
 
-    public static void main(String[] args) {
-        MD5 getMD5 = new MD5();
-        System.out.println(getMD5.GetMD5Code("000000"));
-    }
+
 }

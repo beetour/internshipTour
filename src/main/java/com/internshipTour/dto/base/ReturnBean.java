@@ -13,7 +13,6 @@ import net.sf.json.JSONObject;
 
 
 
-@SuppressWarnings("restriction")
 @XmlRootElement(name = "returnData")
 public class ReturnBean {
 	private String returnCode = EnumResultCode.SUCCESS.toString();

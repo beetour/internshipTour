@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
+@SuppressWarnings("restriction")
 public class ImgUtil {
 	private static Logger log = Logger.getRootLogger();
 	// 图片宽和高的最大尺寸
@@ -168,6 +169,7 @@ public class ImgUtil {
 
 	}
 
+	@SuppressWarnings("unused")
 	public static String saveImg(MultipartFile mFile,Integer uid) {
 
 		String[] split = mFile.getOriginalFilename().split("\\.");
@@ -286,5 +288,12 @@ public class ImgUtil {
             flag = true;
         }
         return flag;
+    }
+    
+    public static String getPicturePath(String path,String format){
+    	String[] split = path.split("\\.");
+    	String prefix = split[0] + format;
+    	String suffix = split[1];
+    	return prefix + "."+ suffix;
     }
 }
