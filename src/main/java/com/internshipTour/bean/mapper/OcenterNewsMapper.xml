@@ -407,7 +407,7 @@
    <select id="selectByPage" resultMap="OcenterNewsResultMap" parameterType="com.internshipTour.requesrBean.News" >
     select 
     <include refid="Base_Column_List" />
-    from ocenter_news status = 1
+    from ocenter_news where status = 1
     order by id desc limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
 </mapper>

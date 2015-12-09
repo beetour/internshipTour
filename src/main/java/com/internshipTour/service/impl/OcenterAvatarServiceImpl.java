@@ -20,7 +20,17 @@ public class OcenterAvatarServiceImpl extends BaseServiceImpl<OcenterAvatar> imp
 	private OcenterAvatarMapper ocenterAvatarMapper;
 
 	public OcenterAvatar findByUid(Integer uid) {
-		return ocenterAvatarMapper.findByUid(uid);
+		 OcenterAvatar ocenterAvatar = ocenterAvatarMapper.findByUid(uid);
+		 if(ocenterAvatar == null){
+			 	ocenterAvatar = new OcenterAvatar();
+				ocenterAvatar.setUid(uid);
+				ocenterAvatar.setCreateTime(DateUtil.getIntTime());
+				ocenterAvatar.setIsTemp(0);
+				ocenterAvatar.setDriver("local");
+				ocenterAvatar.setStatus(1);
+				ocenterAvatarMapper.insertSelective(ocenterAvatar);
+		 }
+		 return ocenterAvatar;
 	}
 
 	public OcenterAvatar update(Integer uid, String originalFilename) {

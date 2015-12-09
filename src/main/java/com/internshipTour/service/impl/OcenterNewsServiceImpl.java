@@ -67,17 +67,15 @@ public class OcenterNewsServiceImpl extends BaseServiceImpl<OcenterNews> impleme
 		 Map<String, OcenterNews> map = new HashMap<String, OcenterNews>();//key为新闻种类  value为新闻
 		 if(list != null && list.size() > 0){
 			 int i = 0;
-			 for(OcenterNews o : list){
-				 if(o.getDeadLine() > DateUtil.getIntTime()){					 
-					 OcenterPicture ocenterPicture = ocenterPictureService.getById(o.getCover());
-					 String path = "";
-					 if(ocenterPicture != null){
-						 path = SystemConf.getServerIP() + ImgUtil.getPicturePath(ocenterPicture.getPath(), "_100_70") + "%|#" + i;
-					 } else {
-						 path = PATHNEWS + "%|#" + i;
-					 }
-					 map.put(path, o);
+			 for(OcenterNews o : list){					 
+				 OcenterPicture ocenterPicture = ocenterPictureService.getById(o.getCover());
+				 String path = "";
+				 if(ocenterPicture != null){
+					 path = SystemConf.getServerIP() + ImgUtil.getPicturePath(ocenterPicture.getPath(), "_100_70") + "%|#" + i;
+				 } else {
+					 path = PATHNEWS + "%|#" + i;
 				 }
+				 map.put(path, o);
 				 i++;
 			 }
 		 }

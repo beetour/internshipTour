@@ -132,7 +132,10 @@ public class UserController extends BaseController {
 					return returnBean;
 				}
 				OcenterAvatar ocenterAvatar = ocenterAvatarService.findByUid(userImgPhoto.getUid());
-				ImgUtil.deleteImg(ocenterAvatar.getPath(),userImgPhoto.getUid());
+				String getpath = ocenterAvatar.getPath();
+				if(getpath != null){					
+					ImgUtil.deleteImg(ocenterAvatar.getPath(),userImgPhoto.getUid());
+				}
 				saveImgName = ImgUtil.saveImg(mFile,userImgPhoto.getUid());
 			} catch (Exception e) {
 				e.printStackTrace();
