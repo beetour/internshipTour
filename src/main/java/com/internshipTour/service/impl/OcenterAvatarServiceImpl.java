@@ -19,18 +19,11 @@ public class OcenterAvatarServiceImpl extends BaseServiceImpl<OcenterAvatar> imp
 	@Autowired
 	private OcenterAvatarMapper ocenterAvatarMapper;
 
+	private static String DEFAULTPATH = "/Public/images/default_avatar.jpg";
+	
 	public OcenterAvatar findByUid(Integer uid) {
-		 OcenterAvatar ocenterAvatar = ocenterAvatarMapper.findByUid(uid);
-		 if(ocenterAvatar == null){
-			 	ocenterAvatar = new OcenterAvatar();
-				ocenterAvatar.setUid(uid);
-				ocenterAvatar.setCreateTime(DateUtil.getIntTime());
-				ocenterAvatar.setIsTemp(0);
-				ocenterAvatar.setDriver("local");
-				ocenterAvatar.setStatus(1);
-				ocenterAvatarMapper.insertSelective(ocenterAvatar);
-		 }
-		 return ocenterAvatar;
+		 return ocenterAvatarMapper.findByUid(uid);
+
 	}
 
 	public OcenterAvatar update(Integer uid, String originalFilename) {
@@ -43,6 +36,7 @@ public class OcenterAvatarServiceImpl extends BaseServiceImpl<OcenterAvatar> imp
 		} else {
 			ocenterAvatar = new OcenterAvatar();
 			ocenterAvatar.setUid(uid);
+			ocenterAvatar.setPath(path);
 			ocenterAvatar.setCreateTime(DateUtil.getIntTime());
 			ocenterAvatar.setPath(path);
 			ocenterAvatar.setIsTemp(0);

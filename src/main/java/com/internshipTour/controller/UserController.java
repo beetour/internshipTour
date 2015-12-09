@@ -132,13 +132,11 @@ public class UserController extends BaseController {
 					return returnBean;
 				}
 				OcenterAvatar ocenterAvatar = ocenterAvatarService.findByUid(userImgPhoto.getUid());
-				String getpath = ocenterAvatar.getPath();
-				if(getpath != null){					
+				if(ocenterAvatar != null){					
 					ImgUtil.deleteImg(ocenterAvatar.getPath(),userImgPhoto.getUid());
 				}
 				saveImgName = ImgUtil.saveImg(mFile,userImgPhoto.getUid());
 			} catch (Exception e) {
-				e.printStackTrace();
 				log.error("头像存储出错!");
 				map.put("msg", "头像存储出错");
 				map.put("status", ImgUploadStatus.IMGSAVEFAIL.getValue());

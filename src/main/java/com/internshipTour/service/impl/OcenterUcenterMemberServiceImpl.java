@@ -14,8 +14,10 @@ import com.internshipTour.base.BaseServiceImpl;
 import com.internshipTour.bean.OcenterAvatar;
 import com.internshipTour.bean.OcenterMember;
 import com.internshipTour.bean.OcenterUcenterMember;
+import com.internshipTour.bean.OcenterUserRole;
 import com.internshipTour.bean.mapper.OcenterMemberMapper;
 import com.internshipTour.bean.mapper.OcenterUcenterMemberMapper;
+import com.internshipTour.bean.mapper.OcenterUserRoleMapper;
 import com.internshipTour.requesrBean.Login;
 import com.internshipTour.requesrBean.Register;
 import com.internshipTour.service.OcenterAvatarService;
@@ -35,6 +37,9 @@ public class OcenterUcenterMemberServiceImpl extends BaseServiceImpl<OcenterUcen
 	
 	@Autowired
 	private OcenterMemberMapper ocenterMemberMapper;
+	
+	@Autowired
+	private OcenterUserRoleMapper OcenterUserRoleMapper;
 	
 	@Resource(name = "ocenterMemberService")
 	OcenterMemberService ocenterMemberService;
@@ -119,7 +124,6 @@ public class OcenterUcenterMemberServiceImpl extends BaseServiceImpl<OcenterUcen
 		record.setStatus((byte) 1);
 		record.setType((byte) 3);
 		ocenterUcenterMemberMapper.insertSelective(record);
-		System.out.println();
 		OcenterUcenterMember selectByEmailAndPassword = ocenterUcenterMemberMapper.selectByEmailAndPassword(register.getUsername(), register.getPassword());
 		OcenterMember ocenterMember = new OcenterMember();
 		ocenterMember.setUid(selectByEmailAndPassword.getId());
@@ -136,6 +140,14 @@ public class OcenterUcenterMemberServiceImpl extends BaseServiceImpl<OcenterUcen
 		ocenterMember.setPosDistrict(0);
 		ocenterMember.setPosProvince(0);
 		ocenterMemberService.insertOcenterMember(ocenterMember);
+		
+		OcenterUserRole ocenterUserRole = new OcenterUserRole();
+		ocenterUserRole.setUid(selectByEmailAndPassword.getId());
+		ocenterUserRole.setRoleId(1);
+		ocenterUserRole.setStatus((byte) 1);
+		ocenterUserRole.setStep("finish");
+		ocenterUserRole.setInit((byte) 1);
+		OcenterUserRoleMapper.insertSelective(ocenterUserRole);
 	}
 
 

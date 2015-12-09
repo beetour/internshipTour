@@ -73,5 +73,8 @@
         <!-- 配置文件表
         <table tableName="ocenter_config" domainObjectName="OcenterConfig" >
         </table> -->
+        <!-- 用户角色表
+        <table tableName="ocenter_user_role" domainObjectName="OcenterUserRole" >
+        </table> -->
     </context>
 </generatorConfiguration>
