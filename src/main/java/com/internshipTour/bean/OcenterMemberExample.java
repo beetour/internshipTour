@@ -932,6 +932,76 @@ public class OcenterMemberExample {
             return (Criteria) this;
         }
 
+        public Criteria andPosCountryIsNull() {
+            addCriterion("pos_country is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryIsNotNull() {
+            addCriterion("pos_country is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryEqualTo(String value) {
+            addCriterion("pos_country =", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryNotEqualTo(String value) {
+            addCriterion("pos_country <>", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryGreaterThan(String value) {
+            addCriterion("pos_country >", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryGreaterThanOrEqualTo(String value) {
+            addCriterion("pos_country >=", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryLessThan(String value) {
+            addCriterion("pos_country <", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryLessThanOrEqualTo(String value) {
+            addCriterion("pos_country <=", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryLike(String value) {
+            addCriterion("pos_country like", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryNotLike(String value) {
+            addCriterion("pos_country not like", value, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryIn(List<String> values) {
+            addCriterion("pos_country in", values, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryNotIn(List<String> values) {
+            addCriterion("pos_country not in", values, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryBetween(String value1, String value2) {
+            addCriterion("pos_country between", value1, value2, "posCountry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPosCountryNotBetween(String value1, String value2) {
+            addCriterion("pos_country not between", value1, value2, "posCountry");
+            return (Criteria) this;
+        }
+
         public Criteria andPosProvinceIsNull() {
             addCriterion("pos_province is null");
             return (Criteria) this;
@@ -1529,6 +1599,76 @@ public class OcenterMemberExample {
 
         public Criteria andTotalCheckNotBetween(Integer value1, Integer value2) {
             addCriterion("total_check not between", value1, value2, "totalCheck");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIsNull() {
+            addCriterion("address is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIsNotNull() {
+            addCriterion("address is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressEqualTo(String value) {
+            addCriterion("address =", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotEqualTo(String value) {
+            addCriterion("address <>", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressGreaterThan(String value) {
+            addCriterion("address >", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("address >=", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressLessThan(String value) {
+            addCriterion("address <", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressLessThanOrEqualTo(String value) {
+            addCriterion("address <=", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressLike(String value) {
+            addCriterion("address like", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotLike(String value) {
+            addCriterion("address not like", value, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIn(List<String> values) {
+            addCriterion("address in", values, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotIn(List<String> values) {
+            addCriterion("address not in", values, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressBetween(String value1, String value2) {
+            addCriterion("address between", value1, value2, "address");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressNotBetween(String value1, String value2) {
+            addCriterion("address not between", value1, value2, "address");
             return (Criteria) this;
         }
     }

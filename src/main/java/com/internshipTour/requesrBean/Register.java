@@ -6,6 +6,7 @@ public class Register {
 	private String password;
 	private String repassword;
 	private String ip;
+	private String country;
 
 	public String getUsername() {
 		return username;
@@ -36,6 +37,12 @@ public class Register {
 	}
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	
 }

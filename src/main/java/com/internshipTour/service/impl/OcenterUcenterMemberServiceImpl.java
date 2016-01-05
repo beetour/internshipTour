@@ -110,7 +110,8 @@ public class OcenterUcenterMemberServiceImpl extends BaseServiceImpl<OcenterUcen
 
 
 
-	public void register(Register register) {
+	public boolean register(Register register) {
+		boolean flag = true;
 		OcenterUcenterMember record = new OcenterUcenterMember();
 		record.setEmail(register.getUsername());
 		record.setPassword(register.getPassword());
@@ -123,7 +124,17 @@ public class OcenterUcenterMemberServiceImpl extends BaseServiceImpl<OcenterUcen
 		record.setUpdateTime(time);
 		record.setStatus((byte) 1);
 		record.setType((byte) 3);
-		ocenterUcenterMemberMapper.insertSelective(record);
+		int insertSelective = 0;
+		try {			
+			ocenterUcenterMemberMapper.insertSelective(record);
+		} catch (Exception e) {
+			log.error("ocenterUcenterMemberMapper操作出错\r\n" + e.getMessage());
+		}
+		if(insertSelective != 1){
+			flag = false;
+			log.error("ocenterUcenterMemberMapper操作出错");
+		}
+		
 		OcenterUcenterMember selectByEmailAndPassword = ocenterUcenterMemberMapper.selectByEmailAndPassword(register.getUsername(), register.getPassword());
 		OcenterMember ocenterMember = new OcenterMember();
 		ocenterMember.setUid(selectByEmailAndPassword.getId());
@@ -139,6 +150,7 @@ public class OcenterUcenterMemberServiceImpl extends BaseServiceImpl<OcenterUcen
 		ocenterMember.setPosCommunity(0);
 		ocenterMember.setPosDistrict(0);
 		ocenterMember.setPosProvince(0);
+		ocenterMember.setPosCountry(register.getCountry());
 		ocenterMemberService.insertOcenterMember(ocenterMember);
 		
 		OcenterUserRole ocenterUserRole = new OcenterUserRole();
@@ -147,7 +159,20 @@ public class OcenterUcenterMemberServiceImpl extends BaseServiceImpl<OcenterUcen
 		ocenterUserRole.setStatus((byte) 1);
 		ocenterUserRole.setStep("finish");
 		ocenterUserRole.setInit((byte) 1);
-		OcenterUserRoleMapper.insertSelective(ocenterUserRole);
+		log.info(ocenterUserRole.toString());
+		int insertSelective2 = 0;
+		try {
+			
+			insertSelective2 = OcenterUserRoleMapper.insertSelective(ocenterUserRole);
+		} catch (Exception e) {
+			log.error("OcenterUserRole 操作出错\r\n" + e.getMessage());
+		}
+		
+		if(insertSelective2 != 1 ){
+			flag = false;
+			log.error("OcenterUserRole 操作出错");
+		}
+		return flag;
 	}
 
 

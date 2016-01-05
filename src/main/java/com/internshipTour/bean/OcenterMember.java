@@ -29,6 +29,8 @@ public class OcenterMember {
 
     private Integer showRole;
 
+    private String posCountry;
+
     private Integer posProvince;
 
     private Integer posCity;
@@ -48,6 +50,8 @@ public class OcenterMember {
     private Integer conCheck;
 
     private Integer totalCheck;
+
+    private String address;
 
     private String signature;
 
@@ -155,6 +159,14 @@ public class OcenterMember {
         this.showRole = showRole;
     }
 
+    public String getPosCountry() {
+        return posCountry;
+    }
+
+    public void setPosCountry(String posCountry) {
+        this.posCountry = posCountry == null ? null : posCountry.trim();
+    }
+
     public Integer getPosProvince() {
         return posProvince;
     }
@@ -233,6 +245,14 @@ public class OcenterMember {
 
     public void setTotalCheck(Integer totalCheck) {
         this.totalCheck = totalCheck;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     public String getSignature() {

@@ -27,7 +27,7 @@ public interface OcenterUcenterMemberService extends BaseService<OcenterUcenterM
 	 * 注册
 	 * @param register
 	 */
-	void register(Register register);
+	boolean register(Register register);
 	
 	/**
 	 * 检查昵称

@@ -15,6 +15,7 @@
     <result column="status" property="status" jdbcType="TINYINT" />
     <result column="last_login_role" property="lastLoginRole" jdbcType="INTEGER" />
     <result column="show_role" property="showRole" jdbcType="INTEGER" />
+    <result column="pos_country" property="posCountry" jdbcType="VARCHAR" />
     <result column="pos_province" property="posProvince" jdbcType="INTEGER" />
     <result column="pos_city" property="posCity" jdbcType="INTEGER" />
     <result column="pos_district" property="posDistrict" jdbcType="INTEGER" />
@@ -25,6 +26,7 @@
     <result column="score4" property="score4" jdbcType="REAL" />
     <result column="con_check" property="conCheck" jdbcType="INTEGER" />
     <result column="total_check" property="totalCheck" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.internshipTour.bean.OcenterMember" extends="OcenterMemberResultMap" >
     <result column="signature" property="signature" jdbcType="LONGVARCHAR" />
@@ -89,8 +91,8 @@
   </sql>
   <sql id="Base_Column_List" >
     uid, nickname, sex, birthday, qq, login, reg_ip, reg_time, last_login_ip, last_login_time, 
-    status, last_login_role, show_role, pos_province, pos_city, pos_district, pos_community, 
-    score1, score2, score3, score4, con_check, total_check
+    status, last_login_role, show_role, pos_country, pos_province, pos_city, pos_district, 
+    pos_community, score1, score2, score3, score4, con_check, total_check, address
   </sql>
   <sql id="Blob_Column_List" >
     signature
@@ -148,18 +150,20 @@
       birthday, qq, login, reg_ip, 
       reg_time, last_login_ip, last_login_time, 
       status, last_login_role, show_role, 
-      pos_province, pos_city, pos_district, 
-      pos_community, score1, score2, 
-      score3, score4, con_check, 
-      total_check, signature)
+      pos_country, pos_province, pos_city, 
+      pos_district, pos_community, score1, 
+      score2, score3, score4, con_check, 
+      total_check, address, signature
+      )
     values (#{uid,jdbcType=INTEGER}, #{nickname,jdbcType=CHAR}, #{sex,jdbcType=TINYINT}, 
       #{birthday,jdbcType=DATE}, #{qq,jdbcType=CHAR}, #{login,jdbcType=INTEGER}, #{regIp,jdbcType=BIGINT}, 
       #{regTime,jdbcType=INTEGER}, #{lastLoginIp,jdbcType=BIGINT}, #{lastLoginTime,jdbcType=INTEGER}, 
       #{status,jdbcType=TINYINT}, #{lastLoginRole,jdbcType=INTEGER}, #{showRole,jdbcType=INTEGER}, 
-      #{posProvince,jdbcType=INTEGER}, #{posCity,jdbcType=INTEGER}, #{posDistrict,jdbcType=INTEGER}, 
-      #{posCommunity,jdbcType=INTEGER}, #{score1,jdbcType=REAL}, #{score2,jdbcType=REAL}, 
-      #{score3,jdbcType=REAL}, #{score4,jdbcType=REAL}, #{conCheck,jdbcType=INTEGER}, 
-      #{totalCheck,jdbcType=INTEGER}, #{signature,jdbcType=LONGVARCHAR})
+      #{posCountry,jdbcType=VARCHAR}, #{posProvince,jdbcType=INTEGER}, #{posCity,jdbcType=INTEGER}, 
+      #{posDistrict,jdbcType=INTEGER}, #{posCommunity,jdbcType=INTEGER}, #{score1,jdbcType=REAL}, 
+      #{score2,jdbcType=REAL}, #{score3,jdbcType=REAL}, #{score4,jdbcType=REAL}, #{conCheck,jdbcType=INTEGER}, 
+      #{totalCheck,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{signature,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterMember" >
     insert into ocenter_member
@@ -203,6 +207,9 @@
       <if test="showRole != null" >
         show_role,
       </if>
+      <if test="posCountry != null" >
+        pos_country,
+      </if>
       <if test="posProvince != null" >
         pos_province,
       </if>
@@ -232,6 +239,9 @@
       </if>
       <if test="totalCheck != null" >
         total_check,
+      </if>
+      <if test="address != null" >
+        address,
       </if>
       <if test="signature != null" >
         signature,
@@ -277,6 +287,9 @@
       <if test="showRole != null" >
         #{showRole,jdbcType=INTEGER},
       </if>
+      <if test="posCountry != null" >
+        #{posCountry,jdbcType=VARCHAR},
+      </if>
       <if test="posProvince != null" >
         #{posProvince,jdbcType=INTEGER},
       </if>
@@ -306,6 +319,9 @@
       </if>
       <if test="totalCheck != null" >
         #{totalCheck,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
       </if>
       <if test="signature != null" >
         #{signature,jdbcType=LONGVARCHAR},
@@ -360,6 +376,9 @@
       <if test="record.showRole != null" >
         show_role = #{record.showRole,jdbcType=INTEGER},
       </if>
+      <if test="record.posCountry != null" >
+        pos_country = #{record.posCountry,jdbcType=VARCHAR},
+      </if>
       <if test="record.posProvince != null" >
         pos_province = #{record.posProvince,jdbcType=INTEGER},
       </if>
@@ -390,6 +409,9 @@
       <if test="record.totalCheck != null" >
         total_check = #{record.totalCheck,jdbcType=INTEGER},
       </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
       <if test="record.signature != null" >
         signature = #{record.signature,jdbcType=LONGVARCHAR},
       </if>
@@ -413,6 +435,7 @@
       status = #{record.status,jdbcType=TINYINT},
       last_login_role = #{record.lastLoginRole,jdbcType=INTEGER},
       show_role = #{record.showRole,jdbcType=INTEGER},
+      pos_country = #{record.posCountry,jdbcType=VARCHAR},
       pos_province = #{record.posProvince,jdbcType=INTEGER},
       pos_city = #{record.posCity,jdbcType=INTEGER},
       pos_district = #{record.posDistrict,jdbcType=INTEGER},
@@ -423,6 +446,7 @@
       score4 = #{record.score4,jdbcType=REAL},
       con_check = #{record.conCheck,jdbcType=INTEGER},
       total_check = #{record.totalCheck,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
       signature = #{record.signature,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -443,6 +467,7 @@
       status = #{record.status,jdbcType=TINYINT},
       last_login_role = #{record.lastLoginRole,jdbcType=INTEGER},
       show_role = #{record.showRole,jdbcType=INTEGER},
+      pos_country = #{record.posCountry,jdbcType=VARCHAR},
       pos_province = #{record.posProvince,jdbcType=INTEGER},
       pos_city = #{record.posCity,jdbcType=INTEGER},
       pos_district = #{record.posDistrict,jdbcType=INTEGER},
@@ -452,7 +477,8 @@
       score3 = #{record.score3,jdbcType=REAL},
       score4 = #{record.score4,jdbcType=REAL},
       con_check = #{record.conCheck,jdbcType=INTEGER},
-      total_check = #{record.totalCheck,jdbcType=INTEGER}
+      total_check = #{record.totalCheck,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -496,6 +522,9 @@
       <if test="showRole != null" >
         show_role = #{showRole,jdbcType=INTEGER},
       </if>
+      <if test="posCountry != null" >
+        pos_country = #{posCountry,jdbcType=VARCHAR},
+      </if>
       <if test="posProvince != null" >
         pos_province = #{posProvince,jdbcType=INTEGER},
       </if>
@@ -526,6 +555,9 @@
       <if test="totalCheck != null" >
         total_check = #{totalCheck,jdbcType=INTEGER},
       </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
       <if test="signature != null" >
         signature = #{signature,jdbcType=LONGVARCHAR},
       </if>
@@ -546,6 +578,7 @@
       status = #{status,jdbcType=TINYINT},
       last_login_role = #{lastLoginRole,jdbcType=INTEGER},
       show_role = #{showRole,jdbcType=INTEGER},
+      pos_country = #{posCountry,jdbcType=VARCHAR},
       pos_province = #{posProvince,jdbcType=INTEGER},
       pos_city = #{posCity,jdbcType=INTEGER},
       pos_district = #{posDistrict,jdbcType=INTEGER},
@@ -556,6 +589,7 @@
       score4 = #{score4,jdbcType=REAL},
       con_check = #{conCheck,jdbcType=INTEGER},
       total_check = #{totalCheck,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
       signature = #{signature,jdbcType=LONGVARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
@@ -573,6 +607,7 @@
       status = #{status,jdbcType=TINYINT},
       last_login_role = #{lastLoginRole,jdbcType=INTEGER},
       show_role = #{showRole,jdbcType=INTEGER},
+      pos_country = #{posCountry,jdbcType=VARCHAR},
       pos_province = #{posProvince,jdbcType=INTEGER},
       pos_city = #{posCity,jdbcType=INTEGER},
       pos_district = #{posDistrict,jdbcType=INTEGER},
@@ -582,11 +617,12 @@
       score3 = #{score3,jdbcType=REAL},
       score4 = #{score4,jdbcType=REAL},
       con_check = #{conCheck,jdbcType=INTEGER},
-      total_check = #{totalCheck,jdbcType=INTEGER}
+      total_check = #{totalCheck,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
   
-   <select id="selectByNickname" resultMap="OcenterMemberResultMap" parameterType="java.lang.String" >
+  <select id="selectByNickname" resultMap="OcenterMemberResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     ,

@@ -203,7 +203,7 @@ public class UserController extends BaseController {
 		}
 		String ipAddr = IpUtils.getIpAddr(request);
 		register.setIp(ipAddr);
-		ocenterUcenterMemberService.register(register);
+		boolean flag = ocenterUcenterMemberService.register(register);
 		
 		map.put("msg", "注册成功");
 		returnBean.setResultCode(EnumResultCode.SUCCESS.toString());

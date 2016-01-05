@@ -33,6 +33,6 @@ public interface OcenterMemberMapper {
     int updateByPrimaryKeyWithBLOBs(OcenterMember record);
 
     int updateByPrimaryKey(OcenterMember record);
-
-	OcenterMember selectByNickname(String nickname);
+    
+    OcenterMember selectByNickname(String nickname);
 }

@@ -44,9 +44,9 @@
         <!-- 用户表 
         <table tableName="ocenter_ucenter_member" domainObjectName="OcenterUcenterMember" >
         </table>  -->
-        <!-- 会员表 
+        <!-- 会员表 -->
         <table tableName="ocenter_member" domainObjectName="OcenterMember" >
-        </table> -->
+        </table> 
  		
  		<!-- 用户头像表
         <table tableName="ocenter_avatar" domainObjectName="OcenterAvatar" >

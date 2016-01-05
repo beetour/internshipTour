@@ -60,4 +60,12 @@ public class OcenterUserRole {
     public void setInit(Byte init) {
         this.init = init;
     }
+
+	@Override
+	public String toString() {
+		return "OcenterUserRole [id=" + id + ", uid=" + uid + ", roleId=" + roleId + ", status=" + status + ", step="
+				+ step + ", init=" + init + "]";
+	}
+    
+   
 }

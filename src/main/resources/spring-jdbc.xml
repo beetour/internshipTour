@@ -12,8 +12,8 @@
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
 		        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		        <property name="url" value="jdbc:mysql://127.0.0.1:3306/ytst?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull" />
-		        <property name="username" value="ytstdj" />
-		        <property name="password" value="cps_6599811" />
+		        <property name="username" value="ytst" />
+		        <property name="password" value="123456" />
 			    <property name="initialSize" value="1" />  
 			    <property name="maxActive" value="500" />  
 			    <property name="maxIdle" value="2" />  

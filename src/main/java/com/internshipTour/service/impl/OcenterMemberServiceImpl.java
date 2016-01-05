@@ -26,7 +26,15 @@ public class OcenterMemberServiceImpl extends BaseServiceImpl<OcenterMember> imp
 	}
 
 	public void insertOcenterMember(OcenterMember ocenterMember) {
-		ocenterMemberMapper.insertSelective(ocenterMember);
+		int insertSelective = 0;
+		try {					
+			insertSelective = ocenterMemberMapper.insertSelective(ocenterMember);
+		} catch (Exception e) {
+			log.error("insertOcenterMember 操作出错\r\n" + e.getMessage());
+		}
+		if(insertSelective != 1){
+			log.error("insertOcenterMember 出错");
+		}
 	}
 	   
 }
