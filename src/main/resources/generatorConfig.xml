@@ -44,9 +44,9 @@
         <!-- 用户表 
         <table tableName="ocenter_ucenter_member" domainObjectName="OcenterUcenterMember" >
         </table>  -->
-        <!-- 会员表 -->
+        <!-- 会员表 
         <table tableName="ocenter_member" domainObjectName="OcenterMember" >
-        </table> 
+        </table> -->
  		
  		<!-- 用户头像表
         <table tableName="ocenter_avatar" domainObjectName="OcenterAvatar" >
@@ -76,5 +76,30 @@
         <!-- 用户角色表
         <table tableName="ocenter_user_role" domainObjectName="OcenterUserRole" >
         </table> -->
+        <!--专题分类表 
+        <table tableName="ocenter_cps_catalog" domainObjectName="OcenterCpsCatalog" >
+        </table> -->
+        <!--topic表 
+        <table tableName="ocenter_cps_topic" domainObjectName="OcenterCpsTopic" >
+        </table> -->
+        <!--实习秀表 
+        <table tableName="ocenter_shixixiu" domainObjectName="OcenterShixixiu" >
+        </table> -->
+        <!--trip表
+        <table tableName="ocenter_cps_trip" domainObjectName="OcenterCpsTrip" >
+        </table>  -->
+        <!--JOB表 
+        <table tableName="ocenter_job" domainObjectName="OcenterJob" >
+        </table> -->
+        <!--轮播图表
+        <table tableName="ocenter_cps_temp_callboard" domainObjectName="OcenterCpsTempCallboard" >
+        </table>  -->
+        <!--职位表
+        <table tableName="ocenter_industry_classify" domainObjectName="OcenterIndustryClassify" >
+        </table> --> 
+        <!--jobname英文表 -->
+        <table tableName="ocenter_job_enus" domainObjectName="OcenterJobEnus" >
+        </table> 
+
     </context>
 </generatorConfiguration>

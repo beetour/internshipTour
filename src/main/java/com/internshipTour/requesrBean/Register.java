@@ -6,7 +6,7 @@ public class Register {
 	private String password;
 	private String repassword;
 	private String ip;
-	private String country;
+	private String country = "CHN";
 
 	public String getUsername() {
 		return username;

@@ -159,6 +159,7 @@ public class UserController extends BaseController {
 	 * @param params
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	@RequestMapping("/register")
 	public ReturnBean register(HttpServletRequest request, @PathVariable String userType,
 			@RequestParam String params) {
