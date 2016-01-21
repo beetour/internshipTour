@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internshipTour.bean.mapper.OcenterJobEnusMapper" >
+  <resultMap id="BaseResultMap" type="com.internshipTour.bean.OcenterJobEnus" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jid" property="jid" jdbcType="INTEGER" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="allowance" property="allowance" jdbcType="VARCHAR" />
+    <result column="academy" property="academy" jdbcType="VARCHAR" />
+    <result column="Language" property="language" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.internshipTour.bean.OcenterJobEnus" extends="BaseResultMap" >
+    <result column="job_content" property="jobContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, jid, job_name, salary, allowance, academy, Language
+  </sql>
+  <sql id="Blob_Column_List" >
+    job_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.internshipTour.bean.OcenterJobEnusExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_job_enus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.internshipTour.bean.OcenterJobEnusExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ocenter_job_enus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_job_enus
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ocenter_job_enus
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.internshipTour.bean.OcenterJobEnusExample" >
+    delete from ocenter_job_enus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.internshipTour.bean.OcenterJobEnus" >
+    insert into ocenter_job_enus (id, jid, job_name, 
+      salary, allowance, academy, 
+      Language, job_content)
+    values (#{id,jdbcType=INTEGER}, #{jid,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=VARCHAR}, #{allowance,jdbcType=VARCHAR}, #{academy,jdbcType=VARCHAR}, 
+      #{language,jdbcType=VARCHAR}, #{jobContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterJobEnus" >
+    insert into ocenter_job_enus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jid != null" >
+        jid,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="allowance != null" >
+        allowance,
+      </if>
+      <if test="academy != null" >
+        academy,
+      </if>
+      <if test="language != null" >
+        Language,
+      </if>
+      <if test="jobContent != null" >
+        job_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jid != null" >
+        #{jid,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="allowance != null" >
+        #{allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null" >
+        #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="jobContent != null" >
+        #{jobContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.internshipTour.bean.OcenterJobEnusExample" resultType="java.lang.Integer" >
+    select count(*) from ocenter_job_enus
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ocenter_job_enus
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.jid != null" >
+        jid = #{record.jid,jdbcType=INTEGER},
+      </if>
+      <if test="record.jobName != null" >
+        job_name = #{record.jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salary != null" >
+        salary = #{record.salary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allowance != null" >
+        allowance = #{record.allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academy != null" >
+        academy = #{record.academy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language != null" >
+        Language = #{record.language,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobContent != null" >
+        job_content = #{record.jobContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ocenter_job_enus
+    set id = #{record.id,jdbcType=INTEGER},
+      jid = #{record.jid,jdbcType=INTEGER},
+      job_name = #{record.jobName,jdbcType=VARCHAR},
+      salary = #{record.salary,jdbcType=VARCHAR},
+      allowance = #{record.allowance,jdbcType=VARCHAR},
+      academy = #{record.academy,jdbcType=VARCHAR},
+      Language = #{record.language,jdbcType=VARCHAR},
+      job_content = #{record.jobContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ocenter_job_enus
+    set id = #{record.id,jdbcType=INTEGER},
+      jid = #{record.jid,jdbcType=INTEGER},
+      job_name = #{record.jobName,jdbcType=VARCHAR},
+      salary = #{record.salary,jdbcType=VARCHAR},
+      allowance = #{record.allowance,jdbcType=VARCHAR},
+      academy = #{record.academy,jdbcType=VARCHAR},
+      Language = #{record.language,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.internshipTour.bean.OcenterJobEnus" >
+    update ocenter_job_enus
+    <set >
+      <if test="jid != null" >
+        jid = #{jid,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="allowance != null" >
+        allowance = #{allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null" >
+        academy = #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null" >
+        Language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="jobContent != null" >
+        job_content = #{jobContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.internshipTour.bean.OcenterJobEnus" >
+    update ocenter_job_enus
+    set jid = #{jid,jdbcType=INTEGER},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      allowance = #{allowance,jdbcType=VARCHAR},
+      academy = #{academy,jdbcType=VARCHAR},
+      Language = #{language,jdbcType=VARCHAR},
+      job_content = #{jobContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.internshipTour.bean.OcenterJobEnus" >
+    update ocenter_job_enus
+    set jid = #{jid,jdbcType=INTEGER},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      allowance = #{allowance,jdbcType=VARCHAR},
+      academy = #{academy,jdbcType=VARCHAR},
+      Language = #{language,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByJid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from ocenter_job_enus
+    where jid = #{0}
+  </select>
+</mapper>

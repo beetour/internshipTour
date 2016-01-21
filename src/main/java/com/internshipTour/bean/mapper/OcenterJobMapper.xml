@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internshipTour.bean.mapper.OcenterJobMapper" >
+  <resultMap id="BaseResultMap" type="com.internshipTour.bean.OcenterJob" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="trade_id" property="tradeId" jdbcType="INTEGER" />
+    <result column="education" property="education" jdbcType="INTEGER" />
+    <result column="experience" property="experience" jdbcType="INTEGER" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="allowance" property="allowance" jdbcType="VARCHAR" />
+    <result column="is_graduate" property="isGraduate" jdbcType="BIT" />
+    <result column="region" property="region" jdbcType="INTEGER" />
+    <result column="academy" property="academy" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="dead_time" property="deadTime" jdbcType="INTEGER" />
+    <result column="flush_time" property="flushTime" jdbcType="INTEGER" />
+    <result column="is_display" property="isDisplay" jdbcType="BIT" />
+    <result column="click" property="click" jdbcType="INTEGER" />
+    <result column="accommodation" property="accommodation" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.internshipTour.bean.OcenterJob" extends="BaseResultMap" >
+    <result column="job_content" property="jobContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, job_name, company_id, sex, amount, category_id, trade_id, education, experience, 
+    salary, allowance, is_graduate, region, academy, add_time, dead_time, flush_time, 
+    is_display, click, accommodation
+  </sql>
+  <sql id="Blob_Column_List" >
+    job_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.internshipTour.bean.OcenterJobExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_job
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.internshipTour.bean.OcenterJobExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ocenter_job
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_job
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ocenter_job
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.internshipTour.bean.OcenterJobExample" >
+    delete from ocenter_job
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.internshipTour.bean.OcenterJob" >
+    insert into ocenter_job (id, job_name, company_id, 
+      sex, amount, category_id, 
+      trade_id, education, experience, 
+      salary, allowance, is_graduate, 
+      region, academy, add_time, 
+      dead_time, flush_time, is_display, 
+      click, accommodation, job_content
+      )
+    values (#{id,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{sex,jdbcType=BIT}, #{amount,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, 
+      #{tradeId,jdbcType=INTEGER}, #{education,jdbcType=INTEGER}, #{experience,jdbcType=INTEGER}, 
+      #{salary,jdbcType=VARCHAR}, #{allowance,jdbcType=VARCHAR}, #{isGraduate,jdbcType=BIT}, 
+      #{region,jdbcType=INTEGER}, #{academy,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{deadTime,jdbcType=INTEGER}, #{flushTime,jdbcType=INTEGER}, #{isDisplay,jdbcType=BIT}, 
+      #{click,jdbcType=INTEGER}, #{accommodation,jdbcType=SMALLINT}, #{jobContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterJob" >
+    insert into ocenter_job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="tradeId != null" >
+        trade_id,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="experience != null" >
+        experience,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="allowance != null" >
+        allowance,
+      </if>
+      <if test="isGraduate != null" >
+        is_graduate,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="academy != null" >
+        academy,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="deadTime != null" >
+        dead_time,
+      </if>
+      <if test="flushTime != null" >
+        flush_time,
+      </if>
+      <if test="isDisplay != null" >
+        is_display,
+      </if>
+      <if test="click != null" >
+        click,
+      </if>
+      <if test="accommodation != null" >
+        accommodation,
+      </if>
+      <if test="jobContent != null" >
+        job_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="experience != null" >
+        #{experience,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="allowance != null" >
+        #{allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="isGraduate != null" >
+        #{isGraduate,jdbcType=BIT},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=INTEGER},
+      </if>
+      <if test="academy != null" >
+        #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="deadTime != null" >
+        #{deadTime,jdbcType=INTEGER},
+      </if>
+      <if test="flushTime != null" >
+        #{flushTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplay != null" >
+        #{isDisplay,jdbcType=BIT},
+      </if>
+      <if test="click != null" >
+        #{click,jdbcType=INTEGER},
+      </if>
+      <if test="accommodation != null" >
+        #{accommodation,jdbcType=SMALLINT},
+      </if>
+      <if test="jobContent != null" >
+        #{jobContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.internshipTour.bean.OcenterJobExample" resultType="java.lang.Integer" >
+    select count(*) from ocenter_job
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ocenter_job
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.jobName != null" >
+        job_name = #{record.jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=BIT},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradeId != null" >
+        trade_id = #{record.tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.education != null" >
+        education = #{record.education,jdbcType=INTEGER},
+      </if>
+      <if test="record.experience != null" >
+        experience = #{record.experience,jdbcType=INTEGER},
+      </if>
+      <if test="record.salary != null" >
+        salary = #{record.salary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allowance != null" >
+        allowance = #{record.allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGraduate != null" >
+        is_graduate = #{record.isGraduate,jdbcType=BIT},
+      </if>
+      <if test="record.region != null" >
+        region = #{record.region,jdbcType=INTEGER},
+      </if>
+      <if test="record.academy != null" >
+        academy = #{record.academy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.deadTime != null" >
+        dead_time = #{record.deadTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.flushTime != null" >
+        flush_time = #{record.flushTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDisplay != null" >
+        is_display = #{record.isDisplay,jdbcType=BIT},
+      </if>
+      <if test="record.click != null" >
+        click = #{record.click,jdbcType=INTEGER},
+      </if>
+      <if test="record.accommodation != null" >
+        accommodation = #{record.accommodation,jdbcType=SMALLINT},
+      </if>
+      <if test="record.jobContent != null" >
+        job_content = #{record.jobContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ocenter_job
+    set id = #{record.id,jdbcType=INTEGER},
+      job_name = #{record.jobName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      sex = #{record.sex,jdbcType=BIT},
+      amount = #{record.amount,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      trade_id = #{record.tradeId,jdbcType=INTEGER},
+      education = #{record.education,jdbcType=INTEGER},
+      experience = #{record.experience,jdbcType=INTEGER},
+      salary = #{record.salary,jdbcType=VARCHAR},
+      allowance = #{record.allowance,jdbcType=VARCHAR},
+      is_graduate = #{record.isGraduate,jdbcType=BIT},
+      region = #{record.region,jdbcType=INTEGER},
+      academy = #{record.academy,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      dead_time = #{record.deadTime,jdbcType=INTEGER},
+      flush_time = #{record.flushTime,jdbcType=INTEGER},
+      is_display = #{record.isDisplay,jdbcType=BIT},
+      click = #{record.click,jdbcType=INTEGER},
+      accommodation = #{record.accommodation,jdbcType=SMALLINT},
+      job_content = #{record.jobContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ocenter_job
+    set id = #{record.id,jdbcType=INTEGER},
+      job_name = #{record.jobName,jdbcType=VARCHAR},
+      company_id = #{record.companyId,jdbcType=INTEGER},
+      sex = #{record.sex,jdbcType=BIT},
+      amount = #{record.amount,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      trade_id = #{record.tradeId,jdbcType=INTEGER},
+      education = #{record.education,jdbcType=INTEGER},
+      experience = #{record.experience,jdbcType=INTEGER},
+      salary = #{record.salary,jdbcType=VARCHAR},
+      allowance = #{record.allowance,jdbcType=VARCHAR},
+      is_graduate = #{record.isGraduate,jdbcType=BIT},
+      region = #{record.region,jdbcType=INTEGER},
+      academy = #{record.academy,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      dead_time = #{record.deadTime,jdbcType=INTEGER},
+      flush_time = #{record.flushTime,jdbcType=INTEGER},
+      is_display = #{record.isDisplay,jdbcType=BIT},
+      click = #{record.click,jdbcType=INTEGER},
+      accommodation = #{record.accommodation,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.internshipTour.bean.OcenterJob" >
+    update ocenter_job
+    <set >
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeId != null" >
+        trade_id = #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=INTEGER},
+      </if>
+      <if test="experience != null" >
+        experience = #{experience,jdbcType=INTEGER},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="allowance != null" >
+        allowance = #{allowance,jdbcType=VARCHAR},
+      </if>
+      <if test="isGraduate != null" >
+        is_graduate = #{isGraduate,jdbcType=BIT},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=INTEGER},
+      </if>
+      <if test="academy != null" >
+        academy = #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="deadTime != null" >
+        dead_time = #{deadTime,jdbcType=INTEGER},
+      </if>
+      <if test="flushTime != null" >
+        flush_time = #{flushTime,jdbcType=INTEGER},
+      </if>
+      <if test="isDisplay != null" >
+        is_display = #{isDisplay,jdbcType=BIT},
+      </if>
+      <if test="click != null" >
+        click = #{click,jdbcType=INTEGER},
+      </if>
+      <if test="accommodation != null" >
+        accommodation = #{accommodation,jdbcType=SMALLINT},
+      </if>
+      <if test="jobContent != null" >
+        job_content = #{jobContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.internshipTour.bean.OcenterJob" >
+    update ocenter_job
+    set job_name = #{jobName,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=BIT},
+      amount = #{amount,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      trade_id = #{tradeId,jdbcType=INTEGER},
+      education = #{education,jdbcType=INTEGER},
+      experience = #{experience,jdbcType=INTEGER},
+      salary = #{salary,jdbcType=VARCHAR},
+      allowance = #{allowance,jdbcType=VARCHAR},
+      is_graduate = #{isGraduate,jdbcType=BIT},
+      region = #{region,jdbcType=INTEGER},
+      academy = #{academy,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      dead_time = #{deadTime,jdbcType=INTEGER},
+      flush_time = #{flushTime,jdbcType=INTEGER},
+      is_display = #{isDisplay,jdbcType=BIT},
+      click = #{click,jdbcType=INTEGER},
+      accommodation = #{accommodation,jdbcType=SMALLINT},
+      job_content = #{jobContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.internshipTour.bean.OcenterJob" >
+    update ocenter_job
+    set job_name = #{jobName,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=BIT},
+      amount = #{amount,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      trade_id = #{tradeId,jdbcType=INTEGER},
+      education = #{education,jdbcType=INTEGER},
+      experience = #{experience,jdbcType=INTEGER},
+      salary = #{salary,jdbcType=VARCHAR},
+      allowance = #{allowance,jdbcType=VARCHAR},
+      is_graduate = #{isGraduate,jdbcType=BIT},
+      region = #{region,jdbcType=INTEGER},
+      academy = #{academy,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      dead_time = #{deadTime,jdbcType=INTEGER},
+      flush_time = #{flushTime,jdbcType=INTEGER},
+      is_display = #{isDisplay,jdbcType=BIT},
+      click = #{click,jdbcType=INTEGER},
+      accommodation = #{accommodation,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internshipTour.bean.mapper.OcenterCpsCatalogMapper" >
+  <resultMap id="BaseResultMap" type="com.internshipTour.bean.OcenterCpsCatalog" >
+    <id column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="com_titlename" property="comTitlename" jdbcType="VARCHAR" />
+    <result column="com_columnid" property="comColumnid" jdbcType="INTEGER" />
+    <result column="com_link" property="comLink" jdbcType="VARCHAR" />
+    <result column="com_list" property="comList" jdbcType="INTEGER" />
+    <result column="class_url" property="classUrl" jdbcType="VARCHAR" />
+    <result column="is_show" property="isShow" jdbcType="BIT" />
+    <result column="temp_id" property="tempId" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="category_type" property="categoryType" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    category_id, parent_id, class_id, com_titlename, com_columnid, com_link, com_list, 
+    class_url, is_show, temp_id, status, category_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.internshipTour.bean.OcenterCpsCatalogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ocenter_cps_catalog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ocenter_cps_catalog
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ocenter_cps_catalog
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.internshipTour.bean.OcenterCpsCatalogExample" >
+    delete from ocenter_cps_catalog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.internshipTour.bean.OcenterCpsCatalog" >
+    insert into ocenter_cps_catalog (category_id, parent_id, class_id, 
+      com_titlename, com_columnid, com_link, 
+      com_list, class_url, is_show, 
+      temp_id, status, category_type
+      )
+    values (#{categoryId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, 
+      #{comTitlename,jdbcType=VARCHAR}, #{comColumnid,jdbcType=INTEGER}, #{comLink,jdbcType=VARCHAR}, 
+      #{comList,jdbcType=INTEGER}, #{classUrl,jdbcType=VARCHAR}, #{isShow,jdbcType=BIT}, 
+      #{tempId,jdbcType=SMALLINT}, #{status,jdbcType=BIT}, #{categoryType,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterCpsCatalog" >
+    insert into ocenter_cps_catalog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="comTitlename != null" >
+        com_titlename,
+      </if>
+      <if test="comColumnid != null" >
+        com_columnid,
+      </if>
+      <if test="comLink != null" >
+        com_link,
+      </if>
+      <if test="comList != null" >
+        com_list,
+      </if>
+      <if test="classUrl != null" >
+        class_url,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="tempId != null" >
+        temp_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="categoryType != null" >
+        category_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="comTitlename != null" >
+        #{comTitlename,jdbcType=VARCHAR},
+      </if>
+      <if test="comColumnid != null" >
+        #{comColumnid,jdbcType=INTEGER},
+      </if>
+      <if test="comLink != null" >
+        #{comLink,jdbcType=VARCHAR},
+      </if>
+      <if test="comList != null" >
+        #{comList,jdbcType=INTEGER},
+      </if>
+      <if test="classUrl != null" >
+        #{classUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="tempId != null" >
+        #{tempId,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="categoryType != null" >
+        #{categoryType,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.internshipTour.bean.OcenterCpsCatalogExample" resultType="java.lang.Integer" >
+    select count(*) from ocenter_cps_catalog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ocenter_cps_catalog
+    <set >
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null" >
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.comTitlename != null" >
+        com_titlename = #{record.comTitlename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comColumnid != null" >
+        com_columnid = #{record.comColumnid,jdbcType=INTEGER},
+      </if>
+      <if test="record.comLink != null" >
+        com_link = #{record.comLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comList != null" >
+        com_list = #{record.comList,jdbcType=INTEGER},
+      </if>
+      <if test="record.classUrl != null" >
+        class_url = #{record.classUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isShow != null" >
+        is_show = #{record.isShow,jdbcType=BIT},
+      </if>
+      <if test="record.tempId != null" >
+        temp_id = #{record.tempId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.categoryType != null" >
+        category_type = #{record.categoryType,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ocenter_cps_catalog
+    set category_id = #{record.categoryId,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      com_titlename = #{record.comTitlename,jdbcType=VARCHAR},
+      com_columnid = #{record.comColumnid,jdbcType=INTEGER},
+      com_link = #{record.comLink,jdbcType=VARCHAR},
+      com_list = #{record.comList,jdbcType=INTEGER},
+      class_url = #{record.classUrl,jdbcType=VARCHAR},
+      is_show = #{record.isShow,jdbcType=BIT},
+      temp_id = #{record.tempId,jdbcType=SMALLINT},
+      status = #{record.status,jdbcType=BIT},
+      category_type = #{record.categoryType,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.internshipTour.bean.OcenterCpsCatalog" >
+    update ocenter_cps_catalog
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="comTitlename != null" >
+        com_titlename = #{comTitlename,jdbcType=VARCHAR},
+      </if>
+      <if test="comColumnid != null" >
+        com_columnid = #{comColumnid,jdbcType=INTEGER},
+      </if>
+      <if test="comLink != null" >
+        com_link = #{comLink,jdbcType=VARCHAR},
+      </if>
+      <if test="comList != null" >
+        com_list = #{comList,jdbcType=INTEGER},
+      </if>
+      <if test="classUrl != null" >
+        class_url = #{classUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="tempId != null" >
+        temp_id = #{tempId,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="categoryType != null" >
+        category_type = #{categoryType,jdbcType=BIT},
+      </if>
+    </set>
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.internshipTour.bean.OcenterCpsCatalog" >
+    update ocenter_cps_catalog
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      com_titlename = #{comTitlename,jdbcType=VARCHAR},
+      com_columnid = #{comColumnid,jdbcType=INTEGER},
+      com_link = #{comLink,jdbcType=VARCHAR},
+      com_list = #{comList,jdbcType=INTEGER},
+      class_url = #{classUrl,jdbcType=VARCHAR},
+      is_show = #{isShow,jdbcType=BIT},
+      temp_id = #{tempId,jdbcType=SMALLINT},
+      status = #{status,jdbcType=BIT},
+      category_type = #{categoryType,jdbcType=BIT}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getInternshipData"  resultMap="BaseResultMap"  parameterType="java.lang.Integer" >
+    select * from ocenter_cps_catalog where is_show = 0 and category_type = #{0} order by category_id desc limit 1
+    
+  </select>
+</mapper>

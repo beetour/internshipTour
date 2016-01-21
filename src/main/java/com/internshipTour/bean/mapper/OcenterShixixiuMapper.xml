@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internshipTour.bean.mapper.OcenterShixixiuMapper" >
+  <resultMap id="BaseResultMap" type="com.internshipTour.bean.OcenterShixixiu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="industry_classify" property="industryClassify" jdbcType="INTEGER" />
+    <result column="video_classify" property="videoClassify" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="is_company" property="isCompany" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="INTEGER" />
+    <result column="origin" property="origin" jdbcType="VARCHAR" />
+    <result column="recommend" property="recommend" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="click" property="click" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.internshipTour.bean.OcenterShixixiu" extends="BaseResultMap" >
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, industry_classify, video_classify, uid, keyword, pic, is_company, url, 
+    description, author, origin, recommend, status, click, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.internshipTour.bean.OcenterShixixiuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_shixixiu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.internshipTour.bean.OcenterShixixiuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ocenter_shixixiu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_shixixiu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ocenter_shixixiu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.internshipTour.bean.OcenterShixixiuExample" >
+    delete from ocenter_shixixiu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.internshipTour.bean.OcenterShixixiu" >
+    insert into ocenter_shixixiu (id, title, industry_classify, 
+      video_classify, uid, keyword, 
+      pic, is_company, url, 
+      description, author, origin, 
+      recommend, status, click, 
+      update_time, detail)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{industryClassify,jdbcType=INTEGER}, 
+      #{videoClassify,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{isCompany,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{author,jdbcType=INTEGER}, #{origin,jdbcType=VARCHAR}, 
+      #{recommend,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{click,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER}, #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterShixixiu" >
+    insert into ocenter_shixixiu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="industryClassify != null" >
+        industry_classify,
+      </if>
+      <if test="videoClassify != null" >
+        video_classify,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="isCompany != null" >
+        is_company,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="origin != null" >
+        origin,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="click != null" >
+        click,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="industryClassify != null" >
+        #{industryClassify,jdbcType=INTEGER},
+      </if>
+      <if test="videoClassify != null" >
+        #{videoClassify,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="isCompany != null" >
+        #{isCompany,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="click != null" >
+        #{click,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.internshipTour.bean.OcenterShixixiuExample" resultType="java.lang.Integer" >
+    select count(*) from ocenter_shixixiu
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ocenter_shixixiu
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryClassify != null" >
+        industry_classify = #{record.industryClassify,jdbcType=INTEGER},
+      </if>
+      <if test="record.videoClassify != null" >
+        video_classify = #{record.videoClassify,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.keyword != null" >
+        keyword = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCompany != null" >
+        is_company = #{record.isCompany,jdbcType=INTEGER},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=INTEGER},
+      </if>
+      <if test="record.origin != null" >
+        origin = #{record.origin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommend != null" >
+        recommend = #{record.recommend,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.click != null" >
+        click = #{record.click,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.detail != null" >
+        detail = #{record.detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ocenter_shixixiu
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      industry_classify = #{record.industryClassify,jdbcType=INTEGER},
+      video_classify = #{record.videoClassify,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      keyword = #{record.keyword,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      is_company = #{record.isCompany,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=INTEGER},
+      origin = #{record.origin,jdbcType=VARCHAR},
+      recommend = #{record.recommend,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      click = #{record.click,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=INTEGER},
+      detail = #{record.detail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ocenter_shixixiu
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      industry_classify = #{record.industryClassify,jdbcType=INTEGER},
+      video_classify = #{record.videoClassify,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      keyword = #{record.keyword,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      is_company = #{record.isCompany,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=INTEGER},
+      origin = #{record.origin,jdbcType=VARCHAR},
+      recommend = #{record.recommend,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      click = #{record.click,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.internshipTour.bean.OcenterShixixiu" >
+    update ocenter_shixixiu
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="industryClassify != null" >
+        industry_classify = #{industryClassify,jdbcType=INTEGER},
+      </if>
+      <if test="videoClassify != null" >
+        video_classify = #{videoClassify,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="isCompany != null" >
+        is_company = #{isCompany,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=INTEGER},
+      </if>
+      <if test="origin != null" >
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="click != null" >
+        click = #{click,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.internshipTour.bean.OcenterShixixiu" >
+    update ocenter_shixixiu
+    set title = #{title,jdbcType=VARCHAR},
+      industry_classify = #{industryClassify,jdbcType=INTEGER},
+      video_classify = #{videoClassify,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      is_company = #{isCompany,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      author = #{author,jdbcType=INTEGER},
+      origin = #{origin,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      click = #{click,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.internshipTour.bean.OcenterShixixiu" >
+    update ocenter_shixixiu
+    set title = #{title,jdbcType=VARCHAR},
+      industry_classify = #{industryClassify,jdbcType=INTEGER},
+      video_classify = #{videoClassify,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      is_company = #{isCompany,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      author = #{author,jdbcType=INTEGER},
+      origin = #{origin,jdbcType=VARCHAR},
+      recommend = #{recommend,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      click = #{click,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internshipTour.bean.mapper.OcenterCpsTripMapper" >
+  <resultMap id="BaseResultMap" type="com.internshipTour.bean.OcenterCpsTrip" >
+    <id column="trip_id" property="tripId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="pic_info_en" property="picInfoEn" jdbcType="VARCHAR" />
+    <result column="photo_mark" property="photoMark" jdbcType="VARCHAR" />
+    <result column="photo_subid" property="photoSubid" jdbcType="INTEGER" />
+    <result column="tr_time" property="trTime" jdbcType="INTEGER" />
+    <result column="tr_endtime" property="trEndtime" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="c_url" property="cUrl" jdbcType="VARCHAR" />
+    <result column="requirement" property="requirement" jdbcType="VARCHAR" />
+    <result column="job_id" property="jobId" jdbcType="VARCHAR" />
+    <result column="school_id" property="schoolId" jdbcType="VARCHAR" />
+    <result column="ctime" property="ctime" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.internshipTour.bean.OcenterCpsTripWithBLOBs" extends="BaseResultMap" >
+    <result column="trip_info" property="tripInfo" jdbcType="LONGVARCHAR" />
+    <result column="trip_info_en" property="tripInfoEn" jdbcType="LONGVARCHAR" />
+    <result column="pic_info" property="picInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    trip_id, class_id, pic_url, pic_info_en, photo_mark, photo_subid, tr_time, tr_endtime, 
+    number, c_url, requirement, job_id, school_id, ctime
+  </sql>
+  <sql id="Blob_Column_List" >
+    trip_info, trip_info_en, pic_info
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.internshipTour.bean.OcenterCpsTripExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_cps_trip
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.internshipTour.bean.OcenterCpsTripExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ocenter_cps_trip
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_cps_trip
+    where trip_id = #{tripId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ocenter_cps_trip
+    where trip_id = #{tripId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.internshipTour.bean.OcenterCpsTripExample" >
+    delete from ocenter_cps_trip
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.internshipTour.bean.OcenterCpsTripWithBLOBs" >
+    insert into ocenter_cps_trip (trip_id, class_id, pic_url, 
+      pic_info_en, photo_mark, photo_subid, 
+      tr_time, tr_endtime, number, 
+      c_url, requirement, job_id, 
+      school_id, ctime, trip_info, 
+      trip_info_en, pic_info)
+    values (#{tripId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{picUrl,jdbcType=VARCHAR}, 
+      #{picInfoEn,jdbcType=VARCHAR}, #{photoMark,jdbcType=VARCHAR}, #{photoSubid,jdbcType=INTEGER}, 
+      #{trTime,jdbcType=INTEGER}, #{trEndtime,jdbcType=INTEGER}, #{number,jdbcType=INTEGER}, 
+      #{cUrl,jdbcType=VARCHAR}, #{requirement,jdbcType=VARCHAR}, #{jobId,jdbcType=VARCHAR}, 
+      #{schoolId,jdbcType=VARCHAR}, #{ctime,jdbcType=INTEGER}, #{tripInfo,jdbcType=LONGVARCHAR}, 
+      #{tripInfoEn,jdbcType=LONGVARCHAR}, #{picInfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterCpsTripWithBLOBs" >
+    insert into ocenter_cps_trip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tripId != null" >
+        trip_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="picInfoEn != null" >
+        pic_info_en,
+      </if>
+      <if test="photoMark != null" >
+        photo_mark,
+      </if>
+      <if test="photoSubid != null" >
+        photo_subid,
+      </if>
+      <if test="trTime != null" >
+        tr_time,
+      </if>
+      <if test="trEndtime != null" >
+        tr_endtime,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="cUrl != null" >
+        c_url,
+      </if>
+      <if test="requirement != null" >
+        requirement,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="schoolId != null" >
+        school_id,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="tripInfo != null" >
+        trip_info,
+      </if>
+      <if test="tripInfoEn != null" >
+        trip_info_en,
+      </if>
+      <if test="picInfo != null" >
+        pic_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tripId != null" >
+        #{tripId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picInfoEn != null" >
+        #{picInfoEn,jdbcType=VARCHAR},
+      </if>
+      <if test="photoMark != null" >
+        #{photoMark,jdbcType=VARCHAR},
+      </if>
+      <if test="photoSubid != null" >
+        #{photoSubid,jdbcType=INTEGER},
+      </if>
+      <if test="trTime != null" >
+        #{trTime,jdbcType=INTEGER},
+      </if>
+      <if test="trEndtime != null" >
+        #{trEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="cUrl != null" >
+        #{cUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null" >
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="tripInfo != null" >
+        #{tripInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tripInfoEn != null" >
+        #{tripInfoEn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="picInfo != null" >
+        #{picInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.internshipTour.bean.OcenterCpsTripExample" resultType="java.lang.Integer" >
+    select count(*) from ocenter_cps_trip
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ocenter_cps_trip
+    <set >
+      <if test="record.tripId != null" >
+        trip_id = #{record.tripId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null" >
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.picUrl != null" >
+        pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picInfoEn != null" >
+        pic_info_en = #{record.picInfoEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoMark != null" >
+        photo_mark = #{record.photoMark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoSubid != null" >
+        photo_subid = #{record.photoSubid,jdbcType=INTEGER},
+      </if>
+      <if test="record.trTime != null" >
+        tr_time = #{record.trTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.trEndtime != null" >
+        tr_endtime = #{record.trEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.cUrl != null" >
+        c_url = #{record.cUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requirement != null" >
+        requirement = #{record.requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobId != null" >
+        job_id = #{record.jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolId != null" >
+        school_id = #{record.schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=INTEGER},
+      </if>
+      <if test="record.tripInfo != null" >
+        trip_info = #{record.tripInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.tripInfoEn != null" >
+        trip_info_en = #{record.tripInfoEn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.picInfo != null" >
+        pic_info = #{record.picInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ocenter_cps_trip
+    set trip_id = #{record.tripId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      pic_info_en = #{record.picInfoEn,jdbcType=VARCHAR},
+      photo_mark = #{record.photoMark,jdbcType=VARCHAR},
+      photo_subid = #{record.photoSubid,jdbcType=INTEGER},
+      tr_time = #{record.trTime,jdbcType=INTEGER},
+      tr_endtime = #{record.trEndtime,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      c_url = #{record.cUrl,jdbcType=VARCHAR},
+      requirement = #{record.requirement,jdbcType=VARCHAR},
+      job_id = #{record.jobId,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      trip_info = #{record.tripInfo,jdbcType=LONGVARCHAR},
+      trip_info_en = #{record.tripInfoEn,jdbcType=LONGVARCHAR},
+      pic_info = #{record.picInfo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ocenter_cps_trip
+    set trip_id = #{record.tripId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      pic_info_en = #{record.picInfoEn,jdbcType=VARCHAR},
+      photo_mark = #{record.photoMark,jdbcType=VARCHAR},
+      photo_subid = #{record.photoSubid,jdbcType=INTEGER},
+      tr_time = #{record.trTime,jdbcType=INTEGER},
+      tr_endtime = #{record.trEndtime,jdbcType=INTEGER},
+      number = #{record.number,jdbcType=INTEGER},
+      c_url = #{record.cUrl,jdbcType=VARCHAR},
+      requirement = #{record.requirement,jdbcType=VARCHAR},
+      job_id = #{record.jobId,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.internshipTour.bean.OcenterCpsTripWithBLOBs" >
+    update ocenter_cps_trip
+    <set >
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picInfoEn != null" >
+        pic_info_en = #{picInfoEn,jdbcType=VARCHAR},
+      </if>
+      <if test="photoMark != null" >
+        photo_mark = #{photoMark,jdbcType=VARCHAR},
+      </if>
+      <if test="photoSubid != null" >
+        photo_subid = #{photoSubid,jdbcType=INTEGER},
+      </if>
+      <if test="trTime != null" >
+        tr_time = #{trTime,jdbcType=INTEGER},
+      </if>
+      <if test="trEndtime != null" >
+        tr_endtime = #{trEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="cUrl != null" >
+        c_url = #{cUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null" >
+        requirement = #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null" >
+        job_id = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        school_id = #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="tripInfo != null" >
+        trip_info = #{tripInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tripInfoEn != null" >
+        trip_info_en = #{tripInfoEn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="picInfo != null" >
+        pic_info = #{picInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where trip_id = #{tripId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.internshipTour.bean.OcenterCpsTripWithBLOBs" >
+    update ocenter_cps_trip
+    set class_id = #{classId,jdbcType=INTEGER},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      pic_info_en = #{picInfoEn,jdbcType=VARCHAR},
+      photo_mark = #{photoMark,jdbcType=VARCHAR},
+      photo_subid = #{photoSubid,jdbcType=INTEGER},
+      tr_time = #{trTime,jdbcType=INTEGER},
+      tr_endtime = #{trEndtime,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      c_url = #{cUrl,jdbcType=VARCHAR},
+      requirement = #{requirement,jdbcType=VARCHAR},
+      job_id = #{jobId,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER},
+      trip_info = #{tripInfo,jdbcType=LONGVARCHAR},
+      trip_info_en = #{tripInfoEn,jdbcType=LONGVARCHAR},
+      pic_info = #{picInfo,jdbcType=LONGVARCHAR}
+    where trip_id = #{tripId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.internshipTour.bean.OcenterCpsTrip" >
+    update ocenter_cps_trip
+    set class_id = #{classId,jdbcType=INTEGER},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      pic_info_en = #{picInfoEn,jdbcType=VARCHAR},
+      photo_mark = #{photoMark,jdbcType=VARCHAR},
+      photo_subid = #{photoSubid,jdbcType=INTEGER},
+      tr_time = #{trTime,jdbcType=INTEGER},
+      tr_endtime = #{trEndtime,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      c_url = #{cUrl,jdbcType=VARCHAR},
+      requirement = #{requirement,jdbcType=VARCHAR},
+      job_id = #{jobId,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER}
+    where trip_id = #{tripId,jdbcType=INTEGER}
+  </update>
+</mapper>

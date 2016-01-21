@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.internshipTour.bean.mapper.OcenterCpsTopicMapper" >
+  <resultMap id="BaseResultMap" type="com.internshipTour.bean.OcenterCpsTopic" >
+    <id column="top_id" property="topId" jdbcType="INTEGER" />
+    <result column="f_id" property="fId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="list_pid" property="listPid" jdbcType="SMALLINT" />
+    <result column="burl" property="burl" jdbcType="VARCHAR" />
+    <result column="topicid" property="topicid" jdbcType="SMALLINT" />
+    <result column="org_id" property="orgId" jdbcType="INTEGER" />
+    <result column="click" property="click" jdbcType="INTEGER" />
+    <result column="list" property="list" jdbcType="BIT" />
+    <result column="to_key" property="toKey" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="SMALLINT" />
+    <result column="addtime" property="addtime" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="video_id" property="videoId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.internshipTour.bean.OcenterCpsTopicWithBLOBs" extends="BaseResultMap" >
+    <result column="info_en" property="infoEn" jdbcType="LONGVARCHAR" />
+    <result column="info" property="info" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    top_id, f_id, class_id, name, list_pid, burl, topicid, org_id, click, list, to_key, 
+    sort, addtime, update_time, video_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    info_en, info
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.internshipTour.bean.OcenterCpsTopicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_cps_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.internshipTour.bean.OcenterCpsTopicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ocenter_cps_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_cps_topic
+    where top_id = #{topId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ocenter_cps_topic
+    where top_id = #{topId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.internshipTour.bean.OcenterCpsTopicExample" >
+    delete from ocenter_cps_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.internshipTour.bean.OcenterCpsTopicWithBLOBs" >
+    insert into ocenter_cps_topic (top_id, f_id, class_id, 
+      name, list_pid, burl, 
+      topicid, org_id, click, 
+      list, to_key, sort, addtime, 
+      update_time, video_id, info_en, 
+      info)
+    values (#{topId,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{listPid,jdbcType=SMALLINT}, #{burl,jdbcType=VARCHAR}, 
+      #{topicid,jdbcType=SMALLINT}, #{orgId,jdbcType=INTEGER}, #{click,jdbcType=INTEGER}, 
+      #{list,jdbcType=BIT}, #{toKey,jdbcType=VARCHAR}, #{sort,jdbcType=SMALLINT}, #{addtime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{videoId,jdbcType=INTEGER}, #{infoEn,jdbcType=LONGVARCHAR}, 
+      #{info,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterCpsTopicWithBLOBs" >
+    insert into ocenter_cps_topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topId != null" >
+        top_id,
+      </if>
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="listPid != null" >
+        list_pid,
+      </if>
+      <if test="burl != null" >
+        burl,
+      </if>
+      <if test="topicid != null" >
+        topicid,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="click != null" >
+        click,
+      </if>
+      <if test="list != null" >
+        list,
+      </if>
+      <if test="toKey != null" >
+        to_key,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="videoId != null" >
+        video_id,
+      </if>
+      <if test="infoEn != null" >
+        info_en,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topId != null" >
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="fId != null" >
+        #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="listPid != null" >
+        #{listPid,jdbcType=SMALLINT},
+      </if>
+      <if test="burl != null" >
+        #{burl,jdbcType=VARCHAR},
+      </if>
+      <if test="topicid != null" >
+        #{topicid,jdbcType=SMALLINT},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="click != null" >
+        #{click,jdbcType=INTEGER},
+      </if>
+      <if test="list != null" >
+        #{list,jdbcType=BIT},
+      </if>
+      <if test="toKey != null" >
+        #{toKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="videoId != null" >
+        #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="infoEn != null" >
+        #{infoEn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.internshipTour.bean.OcenterCpsTopicExample" resultType="java.lang.Integer" >
+    select count(*) from ocenter_cps_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ocenter_cps_topic
+    <set >
+      <if test="record.topId != null" >
+        top_id = #{record.topId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fId != null" >
+        f_id = #{record.fId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null" >
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.listPid != null" >
+        list_pid = #{record.listPid,jdbcType=SMALLINT},
+      </if>
+      <if test="record.burl != null" >
+        burl = #{record.burl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.topicid != null" >
+        topicid = #{record.topicid,jdbcType=SMALLINT},
+      </if>
+      <if test="record.orgId != null" >
+        org_id = #{record.orgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.click != null" >
+        click = #{record.click,jdbcType=INTEGER},
+      </if>
+      <if test="record.list != null" >
+        list = #{record.list,jdbcType=BIT},
+      </if>
+      <if test="record.toKey != null" >
+        to_key = #{record.toKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=SMALLINT},
+      </if>
+      <if test="record.addtime != null" >
+        addtime = #{record.addtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.videoId != null" >
+        video_id = #{record.videoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.infoEn != null" >
+        info_en = #{record.infoEn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.info != null" >
+        info = #{record.info,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update ocenter_cps_topic
+    set top_id = #{record.topId,jdbcType=INTEGER},
+      f_id = #{record.fId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      list_pid = #{record.listPid,jdbcType=SMALLINT},
+      burl = #{record.burl,jdbcType=VARCHAR},
+      topicid = #{record.topicid,jdbcType=SMALLINT},
+      org_id = #{record.orgId,jdbcType=INTEGER},
+      click = #{record.click,jdbcType=INTEGER},
+      list = #{record.list,jdbcType=BIT},
+      to_key = #{record.toKey,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=SMALLINT},
+      addtime = #{record.addtime,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      video_id = #{record.videoId,jdbcType=INTEGER},
+      info_en = #{record.infoEn,jdbcType=LONGVARCHAR},
+      info = #{record.info,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ocenter_cps_topic
+    set top_id = #{record.topId,jdbcType=INTEGER},
+      f_id = #{record.fId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      list_pid = #{record.listPid,jdbcType=SMALLINT},
+      burl = #{record.burl,jdbcType=VARCHAR},
+      topicid = #{record.topicid,jdbcType=SMALLINT},
+      org_id = #{record.orgId,jdbcType=INTEGER},
+      click = #{record.click,jdbcType=INTEGER},
+      list = #{record.list,jdbcType=BIT},
+      to_key = #{record.toKey,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=SMALLINT},
+      addtime = #{record.addtime,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      video_id = #{record.videoId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.internshipTour.bean.OcenterCpsTopicWithBLOBs" >
+    update ocenter_cps_topic
+    <set >
+      <if test="fId != null" >
+        f_id = #{fId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null" >
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="listPid != null" >
+        list_pid = #{listPid,jdbcType=SMALLINT},
+      </if>
+      <if test="burl != null" >
+        burl = #{burl,jdbcType=VARCHAR},
+      </if>
+      <if test="topicid != null" >
+        topicid = #{topicid,jdbcType=SMALLINT},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="click != null" >
+        click = #{click,jdbcType=INTEGER},
+      </if>
+      <if test="list != null" >
+        list = #{list,jdbcType=BIT},
+      </if>
+      <if test="toKey != null" >
+        to_key = #{toKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=SMALLINT},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="videoId != null" >
+        video_id = #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="infoEn != null" >
+        info_en = #{infoEn,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where top_id = #{topId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.internshipTour.bean.OcenterCpsTopicWithBLOBs" >
+    update ocenter_cps_topic
+    set f_id = #{fId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      list_pid = #{listPid,jdbcType=SMALLINT},
+      burl = #{burl,jdbcType=VARCHAR},
+      topicid = #{topicid,jdbcType=SMALLINT},
+      org_id = #{orgId,jdbcType=INTEGER},
+      click = #{click,jdbcType=INTEGER},
+      list = #{list,jdbcType=BIT},
+      to_key = #{toKey,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=SMALLINT},
+      addtime = #{addtime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      video_id = #{videoId,jdbcType=INTEGER},
+      info_en = #{infoEn,jdbcType=LONGVARCHAR},
+      info = #{info,jdbcType=LONGVARCHAR}
+    where top_id = #{topId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.internshipTour.bean.OcenterCpsTopic" >
+    update ocenter_cps_topic
+    set f_id = #{fId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      list_pid = #{listPid,jdbcType=SMALLINT},
+      burl = #{burl,jdbcType=VARCHAR},
+      topicid = #{topicid,jdbcType=SMALLINT},
+      org_id = #{orgId,jdbcType=INTEGER},
+      click = #{click,jdbcType=INTEGER},
+      list = #{list,jdbcType=BIT},
+      to_key = #{toKey,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=SMALLINT},
+      addtime = #{addtime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      video_id = #{videoId,jdbcType=INTEGER}
+    where top_id = #{topId,jdbcType=INTEGER}
+  </update>
+</mapper>
