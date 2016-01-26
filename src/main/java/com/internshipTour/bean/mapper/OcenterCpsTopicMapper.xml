@@ -17,6 +17,7 @@
     <result column="addtime" property="addtime" jdbcType="INTEGER" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="video_id" property="videoId" jdbcType="INTEGER" />
+    <result column="name_en" property="nameEn" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.internshipTour.bean.OcenterCpsTopicWithBLOBs" extends="BaseResultMap" >
     <result column="info_en" property="infoEn" jdbcType="LONGVARCHAR" />
@@ -82,7 +83,7 @@
   </sql>
   <sql id="Base_Column_List" >
     top_id, f_id, class_id, name, list_pid, burl, topicid, org_id, click, list, to_key, 
-    sort, addtime, update_time, video_id
+    sort, addtime, update_time, video_id, name_en
   </sql>
   <sql id="Blob_Column_List" >
     info_en, info
@@ -140,14 +141,14 @@
       name, list_pid, burl, 
       topicid, org_id, click, 
       list, to_key, sort, addtime, 
-      update_time, video_id, info_en, 
-      info)
+      update_time, video_id, name_en, 
+      info_en, info)
     values (#{topId,jdbcType=INTEGER}, #{fId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, 
       #{name,jdbcType=VARCHAR}, #{listPid,jdbcType=SMALLINT}, #{burl,jdbcType=VARCHAR}, 
       #{topicid,jdbcType=SMALLINT}, #{orgId,jdbcType=INTEGER}, #{click,jdbcType=INTEGER}, 
       #{list,jdbcType=BIT}, #{toKey,jdbcType=VARCHAR}, #{sort,jdbcType=SMALLINT}, #{addtime,jdbcType=INTEGER}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{videoId,jdbcType=INTEGER}, #{infoEn,jdbcType=LONGVARCHAR}, 
-      #{info,jdbcType=LONGVARCHAR})
+      #{updateTime,jdbcType=TIMESTAMP}, #{videoId,jdbcType=INTEGER}, #{nameEn,jdbcType=VARCHAR}, 
+      #{infoEn,jdbcType=LONGVARCHAR}, #{info,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.internshipTour.bean.OcenterCpsTopicWithBLOBs" >
     insert into ocenter_cps_topic
@@ -196,6 +197,9 @@
       </if>
       <if test="videoId != null" >
         video_id,
+      </if>
+      <if test="nameEn != null" >
+        name_en,
       </if>
       <if test="infoEn != null" >
         info_en,
@@ -249,6 +253,9 @@
       </if>
       <if test="videoId != null" >
         #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="nameEn != null" >
+        #{nameEn,jdbcType=VARCHAR},
       </if>
       <if test="infoEn != null" >
         #{infoEn,jdbcType=LONGVARCHAR},
@@ -312,6 +319,9 @@
       <if test="record.videoId != null" >
         video_id = #{record.videoId,jdbcType=INTEGER},
       </if>
+      <if test="record.nameEn != null" >
+        name_en = #{record.nameEn,jdbcType=VARCHAR},
+      </if>
       <if test="record.infoEn != null" >
         info_en = #{record.infoEn,jdbcType=LONGVARCHAR},
       </if>
@@ -340,6 +350,7 @@
       addtime = #{record.addtime,jdbcType=INTEGER},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       video_id = #{record.videoId,jdbcType=INTEGER},
+      name_en = #{record.nameEn,jdbcType=VARCHAR},
       info_en = #{record.infoEn,jdbcType=LONGVARCHAR},
       info = #{record.info,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -362,7 +373,8 @@
       sort = #{record.sort,jdbcType=SMALLINT},
       addtime = #{record.addtime,jdbcType=INTEGER},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      video_id = #{record.videoId,jdbcType=INTEGER}
+      video_id = #{record.videoId,jdbcType=INTEGER},
+      name_en = #{record.nameEn,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -412,6 +424,9 @@
       <if test="videoId != null" >
         video_id = #{videoId,jdbcType=INTEGER},
       </if>
+      <if test="nameEn != null" >
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
       <if test="infoEn != null" >
         info_en = #{infoEn,jdbcType=LONGVARCHAR},
       </if>
@@ -437,6 +452,7 @@
       addtime = #{addtime,jdbcType=INTEGER},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       video_id = #{videoId,jdbcType=INTEGER},
+      name_en = #{nameEn,jdbcType=VARCHAR},
       info_en = #{infoEn,jdbcType=LONGVARCHAR},
       info = #{info,jdbcType=LONGVARCHAR}
     where top_id = #{topId,jdbcType=INTEGER}
@@ -456,7 +472,8 @@
       sort = #{sort,jdbcType=SMALLINT},
       addtime = #{addtime,jdbcType=INTEGER},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      video_id = #{videoId,jdbcType=INTEGER}
+      video_id = #{videoId,jdbcType=INTEGER},
+      name_en = #{nameEn,jdbcType=VARCHAR}
     where top_id = #{topId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -457,4 +457,13 @@
       ctime = #{ctime,jdbcType=INTEGER}
     where trip_id = #{tripId,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByClassId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ocenter_cps_trip
+    where class_id = #{0}
+  </select>
 </mapper>

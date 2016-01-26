@@ -34,4 +34,6 @@ public interface OcenterCpsTripMapper {
     int updateByPrimaryKeyWithBLOBs(OcenterCpsTripWithBLOBs record);
 
     int updateByPrimaryKey(OcenterCpsTrip record);
+
+	OcenterCpsTripWithBLOBs selectByClassId(Integer classId);
 }

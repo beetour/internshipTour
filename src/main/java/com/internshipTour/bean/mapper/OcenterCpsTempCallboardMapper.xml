@@ -226,7 +226,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByClassId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select * from ocenter_cps_temp_callboard where classid = #{0}
   </select>
 </mapper>

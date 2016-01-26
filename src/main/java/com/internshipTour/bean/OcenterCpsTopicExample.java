@@ -1034,6 +1034,76 @@ public class OcenterCpsTopicExample {
             addCriterion("video_id not between", value1, value2, "videoId");
             return (Criteria) this;
         }
+
+        public Criteria andNameEnIsNull() {
+            addCriterion("name_en is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnIsNotNull() {
+            addCriterion("name_en is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnEqualTo(String value) {
+            addCriterion("name_en =", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnNotEqualTo(String value) {
+            addCriterion("name_en <>", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnGreaterThan(String value) {
+            addCriterion("name_en >", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnGreaterThanOrEqualTo(String value) {
+            addCriterion("name_en >=", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnLessThan(String value) {
+            addCriterion("name_en <", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnLessThanOrEqualTo(String value) {
+            addCriterion("name_en <=", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnLike(String value) {
+            addCriterion("name_en like", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnNotLike(String value) {
+            addCriterion("name_en not like", value, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnIn(List<String> values) {
+            addCriterion("name_en in", values, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnNotIn(List<String> values) {
+            addCriterion("name_en not in", values, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnBetween(String value1, String value2) {
+            addCriterion("name_en between", value1, value2, "nameEn");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEnNotBetween(String value1, String value2) {
+            addCriterion("name_en not between", value1, value2, "nameEn");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

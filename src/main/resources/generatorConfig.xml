@@ -79,9 +79,9 @@
         <!--专题分类表 
         <table tableName="ocenter_cps_catalog" domainObjectName="OcenterCpsCatalog" >
         </table> -->
-        <!--topic表 
+        <!--topic表
         <table tableName="ocenter_cps_topic" domainObjectName="OcenterCpsTopic" >
-        </table> -->
+        </table>  -->
         <!--实习秀表 
         <table tableName="ocenter_shixixiu" domainObjectName="OcenterShixixiu" >
         </table> -->
@@ -97,8 +97,20 @@
         <!--职位表
         <table tableName="ocenter_industry_classify" domainObjectName="OcenterIndustryClassify" >
         </table> --> 
-        <!--jobname英文表 -->
+        <!--jobname英文表 
         <table tableName="ocenter_job_enus" domainObjectName="OcenterJobEnus" >
+        </table> -->
+        <!--school表
+        <table tableName="ocenter_school" domainObjectName="OcenterSchool" >
+        </table> --> 
+        <!--sign表 
+        <table tableName="ocenter_cps_sign" domainObjectName="OcenterCpsSign" >
+        </table> -->
+        <!--entity表 
+        <table tableName="ocenter_cps_product_entity" domainObjectName="OcenterCpsProductEntity" >
+        </table> -->
+        <!--entity_en表 -->
+        <table tableName="ocenter_cps_product_entity_en" domainObjectName="OcenterCpsProductEntityEn" >
         </table> 
 
     </context>

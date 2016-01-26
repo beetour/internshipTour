@@ -33,6 +33,8 @@ public class OcenterCpsTopic {
 
     private Integer videoId;
 
+    private String nameEn;
+
     public Integer getTopId() {
         return topId;
     }
@@ -151,5 +153,13 @@ public class OcenterCpsTopic {
 
     public void setVideoId(Integer videoId) {
         this.videoId = videoId;
+    }
+
+    public String getNameEn() {
+        return nameEn;
+    }
+
+    public void setNameEn(String nameEn) {
+        this.nameEn = nameEn == null ? null : nameEn.trim();
     }
 }
